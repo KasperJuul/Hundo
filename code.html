@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>APP NAME: A Coding Projtct By Kasper Juul</title>
+    <title>HUNDO: A Coding Projtct By Kasper Juul</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,7 +24,7 @@
     <!-- ==== Nav Section ==== -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#"><img src="img/Logo_Initial_White_noBG.svg" height="24" alt=""> APP NAME</a>
+            <a class="navbar-brand" href="#"><img src="img/Logo_Initial_White_noBG.svg" height="24" alt=""> HUNDO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -53,22 +53,83 @@
     <!-- ==== Main Section ==== -->
     <main class="flex-shrink-0">
        <div class="container py-4 px-5 mt-5">
-            <h2 class="border-1 border-bottom border-dark">The Code for APP NAME</h2>
+            <h2 class="border-1 border-bottom border-dark">The Code for HUNDO</h2>
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            //Call Hello World
-                            function HelloWorld(){
-                                alert("Hello World");
+                            // Get the values from the page
+                            // Start or controller function(s)
+                            function getValues(){
+                                //get values from the page
+                                let startValue = document.getElementById("startValue").value;
+                                let endValue = document.getElementById("endValue").value;
+
+                                //parse into integers
+                                startValue = parseInt(startValue);
+                                endValue= parseInt(endValue);
+
+                                //validate inputs
+                                if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+                                    //call generateNumbers
+                                    let numbers = generateNumbers(startValue,endValue);
+                                    
+                                    //call displayNumbers
+                                    displayNumbers(numbers);
+                                }
+                                else {
+                                    alert("You must enter integers!")
+                                }
+                            }
+
+                            // Generate number from the start value to the end value
+                            // Logic function(s)
+                            function generateNumbers( startValue, endValue){
+                                let numbers = [];
+
+                                for (let i = startValue; i <= endValue; i++) {
+                                    numbers.push(i);   
+                                }
+
+                                return numbers;
+                            }
+
+                            // Display the numbers and mark even numbers BOLD
+                            // Display or view functions
+                            function displayNumbers(numbers){
+
+                                let templateRows = "";
+                                let className = "even";
+
+                                for (let index = 0; index < numbers.length; index++) {
+                                    let number = numbers[index];
+                                    if (number > 0 && number % 2 === 0) {
+                                        className = "even";
+                                    } else {
+                                        className = "odd";
+                                    }
+                                    templateRows += `<tr><td class="${className}">${number}</td></tr>`;
+                                }
+
+                                document.getElementById("results").innerHTML = templateRows;
                             }
                         </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello Worl".</p>
+                    <p>The Code is structured in three functions.</p>
+                    <h5>getValues()</h5>
+                    <p>
+                        Hello World is a function that displays an alert with a message of "Hello World".
+                    </p>
+                    <h5>generateNumbers()</h5>
+                    <p>
+                        Hello World is a function that displays an alert with a message of "Hello World".
+                    </p>
+                    <h5>displayNumbers()</h5>
+                    <p>
+                        Hello World is a function that displays an alert with a message of "Hello World".
+                    </p>
                 </div>
             </div>
        </div>
